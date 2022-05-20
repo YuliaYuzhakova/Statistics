@@ -13,13 +13,11 @@ public class StatsService {
 
     //2. Определение средней суммы продаж в месяц
     public int averageSumMonth(long[] sales) {
-        int sum = 0;
-        for (long sale : sales) {
-            sum += sale;
-        }
+        int sum = sum(sales);
         int average = sum / sales.length;
         return average;
     }
+
 
     //3. Определение номера месяца, в котором был пик продаж
     public int maxSales(long[] sales) {
@@ -47,15 +45,10 @@ public class StatsService {
 
     //5. Определение количества месяцев, в которых продажи были ниже среднего
     public int countSalesBelowAverage(long[] sales) {
-        int sum = 0; //Считаем сумму всех продаж
+        int avrg = averageSumMonth(sales);
+        int count = 0;
         for (long sale : sales) {
-            sum += sale;
-        }
-        int average = sum / sales.length; //Считаем среднеее значение
-
-        int count = 0; //Считаем количество месяцев
-        for (long sale : sales) {
-            if (sale < average) {
+            if (sale < avrg) {
                 count++;
             }
         }
@@ -64,15 +57,10 @@ public class StatsService {
 
     //6. Определение количества месяцев, в которых продажи были выше среднего
     public int countSalesAboveAverage(long[] sales) {
-        int sum = 0; //Считаем сумму всех продаж
+        int avrg = averageSumMonth(sales);
+        int count = 0;
         for (long sale : sales) {
-            sum += sale;
-        }
-        int average = sum / sales.length; //Считаем среднеее значение
-
-        int count = 0; //Считаем количество месяцев
-        for (long sale : sales) {
-            if (sale > average) {
+            if (sale > avrg) {
                 count++;
             }
         }
